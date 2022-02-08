@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState, createContext } from 'react'
 import { auth } from "../modules/fb"
 
-export const MemberContext = React.createContext(null)
+export const MemberContext = createContext(null)
 export const defaultHeaders = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
@@ -22,6 +22,7 @@ export const AuthProvider = ({children}) =>{
                 if(res.status === 200){
                     const member = await res.json()
                     setMember(member)
+                    console.log(member)
                 }else{
                     delete defaultHeaders.Authorizations
                     setMember(null)
@@ -36,12 +37,3 @@ export const AuthProvider = ({children}) =>{
     )   
 }
 
-function Child(){
-    const {member} = useContext(MemberContext)
-    return(
-        <div>
-            {member? (<div><p>{member.nickname}</p></div>):(<div><p>로그인을 해주세요.</p></div>)}
-            {member? (<button onClick={signOut}>Sign out</button>):(<button onClick={signInGoogle}>Sign in With Google</button>)}
-        </div>
-    ) 
-}

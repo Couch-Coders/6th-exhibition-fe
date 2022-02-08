@@ -2,21 +2,23 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBdCaG4km8EpCNadinLm1g7llr5wX1izoo",
-    authDomain: "couchcoding-47515.firebaseapp.com",
-    projectId: "couchcoding-47515",
-    storageBucket: "couchcoding-47515.appspot.com",
-    messagingSenderId: "213206292936",
-    appId: "1:213206292936:web:578656afd2913e69e2c8fd",
-    measurementId: "G-PGVX1M2R5T"
+    apiKey: "AIzaSyBCqK90YDvOYQquMKxeMX6AB4UJgX810wU",
+    authDomain: "th-exhibition-be-d1404.firebaseapp.com",
+    projectId: "th-exhibition-be-d1404",
+    storageBucket: "th-exhibition-be-d1404.appspot.com",
+    messagingSenderId: "987943665549",
+    appId: "1:987943665549:web:1f31c6b112e9e81edc47c4",
+    measurementId: "G-LNB600VT0N"
   };
 
 firebase.initializeApp(firebaseConfig);
 export const auth = firebase.auth()
 export const signInGoogle = () =>{
+    console.log('signInGoogle')
     const provider = new firebase.auth.GoogleAuthProvider()
-    return auth.signInWithPopul(provider)
+    return auth.signInWithPopup(provider)
 }
 export const signOut = () =>{
+    console.log('signOut')
     return auth.signOut()
 }

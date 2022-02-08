@@ -2,14 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Navbar from './components/Navabar/Navbar';
+import Member from './components/Member';
+import Main from './components/Main'
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter as Router} from 'react-router-dom'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import {AuthProvider} from './components/AuthProvider'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router basename='/pages'>
-    <App />
-    </Router>
+    <AuthProvider>
+      <Router basename='/pages'>
+        <Navbar/>
+        <Routes>
+          <Route path='/' element={<Main/>}/>
+          <Route path='/member/me' element={<Member/>}/>
+        </Routes>
+      </Router>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
