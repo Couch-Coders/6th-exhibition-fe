@@ -1,12 +1,14 @@
-import React from 'react';
+import {React, useContext} from 'react';
 import {
   Nav,
   NavLink,
-  NavBtn,
-  NavBtnLink
+  NavBtn
 } from './Navbar.style';
+import { MemberContext } from '../AuthProvider';
+import { signInGoogle, signOut } from '../../modules/fb';
 
 const Navbar = () => {
+  const {member} = useContext(MemberContext)
   return (
     <>
       <Nav>
@@ -14,7 +16,17 @@ const Navbar = () => {
           <h1>예술한줌</h1>
         </NavLink>
         <NavBtn>
-          <NavBtnLink to='/signin'>Sign In</NavBtnLink>
+          {
+            member? 
+            <>
+            Profile - onClick: modal show 
+            member nickname
+            <button onClick={signOut}>Sign Out</button> 
+            </>
+            : 
+            <button onClick={signInGoogle}>Sign In </button>
+          }
+         
         </NavBtn>
       </Nav>
     </>
