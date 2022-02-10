@@ -1,9 +1,26 @@
 {   
-    "like": [
-      {
+    "members": {
+      "pageable":{},
+      "list":{
+        "memeberId": 1,
+        "memberName": "example@example.com",
+        "nickname": "first_test"
+        }
+      },
+
+    "likes": {
+      "pageable":{
+        "sort": { "sorted": true, "unsorted": false, "empty": false },
+        "offset": 0,
+        "pageSize": 100,
+        "pageNumber": 0,
+        "paged": true,
+        "unpaged": false
+      },
+      "list":{
         "currentPage": 1,
-        "totalPages": 2,
-        "totalElements": 2,
+        "totalPages": 1,
+        "totalElements": 4,
         "contents": [
           {
             "likeId" : 1,
@@ -14,65 +31,80 @@
               "startDate" : "2021-12-21 ",
               "endDate" : "2022-03-20 "
             }
+          },
+          {
+            "likeId" : 2,
+            "exhibition" : {
+              "exhibitioId" : 10,
+              "title" : "살바도르달리 전시회 ",
+              "place" : "DDP", 
+              "startDate" : "2021-12-21 ",
+              "endDate" : "2022-03-20 "
+            }
+          },
+          {
+            "likeId" : 3,
+            "exhibition" : {
+              "exhibitioId" : 10,
+              "title" : "살바도르달리 전시회 ",
+              "place" : "DDP", 
+              "startDate" : "2021-12-21 ",
+              "endDate" : "2022-03-20 "
+            }
+          },
+          {
+            "likeId" : 4,
+            "exhibition" : {
+              "exhibitioId" : 10,
+              "title" : "살바도르달리 전시회 ",
+              "place" : "DDP", 
+              "startDate" : "2021-12-21 ",
+              "endDate" : "2022-03-20 "
+            }
           }
         ]
       }
-    ],
+    },
       
-    "Review": [
-      {
+    "reviews": {
+      "pageable": {},
+      "list":{
         "nickname": "user1",
         "content": "너무 내 취향ㅠㅜ 뫄뫄 작가님 최고됨..",
         "registerDate": "2022-01-22T22:25:33.5398894",
         "lastModifiedDate": "2022-01-11T11:14:34.845039"
       }
-    ],
+    },
   
-    "exhibitionSearch": [
-      {
-        "currentPage": 1,
-        "totalPages": 2,
-        "totalElements": 15,
-        "content": [
-          {
-            "exhibitionId": "1",
-            "title": "살바도르달리 전시회",
-            "place" : "DDP", 
-            "city" : "서울시",
-            "district":"서초구",
-            "latitude":37.5, 
-            "longitude": 126.99 ,
-            "startDate" : "2021-12-21",
-            "endDate" : "2022-03-20 ",
-            "contactLink":"https://",
-            "ticketPrice" :"15000원",
-            "reservationLink": "https://",
-            "posterUrl": "https://",
-            "progress":true,
-            "likeCount": 120,
-            "like": "30"
-          }
-        ]
+    "exhibitions": {
+      "pageable": {
+        "sort": { "sorted": true, "unsorted": false, "empty": false },
+        "offset": 0,
+        "pageSize": 12,
+        "pageNumber": 0,
+        "paged": true,
+        "unpaged": false
+        },
+        "list": {
+          "content": [
+            {
+              "exhibitionId": 10,
+              "title": "살바도르달리 전시회",
+              "place" : "DDP", 
+              "city" : "서울시",
+              "district":"서초구",
+              "latitude":37.5, 
+              "longitude": 126.99 ,
+              "startDate" : "2021-12-21",
+              "endDate" : "2022-03-20 ",
+              "contactLink":"https://",
+              "ticketPrice" :"15000원",
+              "reservationLink": "https://",
+              "posterUrl": "https://",
+              "progress":true,
+              "likeCount": 120
+            }
+          ]
+        }
       }
-    ],
-  
-    "content": [
-      {
-        "exhibitionId" : 1,
-        "title" : "살바도르달전시회 ",
-        "place" : "DDP", 
-        "city" : "서울시",
-        "district":"서초구",
-        "latitude":37.5, 
-        "longitude": 126.99 ,
-        "startDate" : "2021-12-21 ",
-        "endDate" : "2022-03-20 ",
-        "contactLink":"https://",
-        "ticketPrice" :"15000",
-        "reservationLink": "https://",
-        "posterUrl": "https://",
-        "progress":true,
-        "likeCount": 120
-      }
-    ]
   }
