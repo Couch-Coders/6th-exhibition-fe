@@ -3,17 +3,18 @@ import {
   Nav,
   NavLink,
   NavBtn
-} from './Navbar.style';
-import { MemberContext } from '../AuthProvider';
+} from './Banner.style';
+import { Button } from 'antd';
+import { MemberContext } from '../../modules/AuthProvider';
 import { signInGoogle, signOut } from '../../modules/fb';
 
-const Navbar = () => {
+const Banner = () => {
   const {member} = useContext(MemberContext)
   return (
     <>
       <Nav>
         <NavLink to='/'>
-          <h1>예술한줌</h1>
+        <p style={{fontSize: "25px", marginRight: "15px"}}>🎨</p>예술한줌
         </NavLink>
         <NavBtn>
           {
@@ -21,10 +22,10 @@ const Navbar = () => {
             <>
             Profile - onClick: modal show 
             member nickname
-            <button onClick={signOut}>Sign Out</button> 
+            <Button onClick={signOut}>Sign Out</Button> 
             </>
             : 
-            <button onClick={signInGoogle}>Sign In </button>
+            <Button type='primary' onClick={signInGoogle}>Sign In </Button>
           }
          
         </NavBtn>
@@ -33,4 +34,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Banner;

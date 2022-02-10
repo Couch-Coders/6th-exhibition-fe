@@ -1,10 +1,14 @@
+import DashBoard from "../components/DashBoard"
 
-function Member(){
+function MyPage(){
     return(
         <div className="container">
             <div className="header">
             My Page
             member info / member delete
+            </div>
+            <div className="body">
+            <DashBoard/>
             </div>
 
             my likes list
@@ -15,4 +19,4 @@ function Member(){
     )
 }
 
-export default Member
+export default MyPage

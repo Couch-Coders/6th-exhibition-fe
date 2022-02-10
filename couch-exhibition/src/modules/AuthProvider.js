@@ -1,5 +1,5 @@
 import { useEffect, useState, createContext } from 'react'
-import { auth } from "../modules/fb"
+import { auth } from "./fb"
 
 export const MemberContext = createContext(null)
 export const defaultHeaders = {
@@ -14,6 +14,7 @@ export const AuthProvider = ({children}) =>{
         auth.onAuthStateChanged(async (firebaseMember) => {
             if(firebaseMember){
                 const token = await firebaseMember.getIdToken()
+                console.log(token)
                 defaultHeaders.Authorization = `Bearer ${token}`
                 const res = await fetch("/members/me",{
                     method: "GET",

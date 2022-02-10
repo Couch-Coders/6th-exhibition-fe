@@ -1,13 +1,8 @@
-import './App.css';
-import Navbar from './components/Navabar/Navbar';
+import styled from 'styled-components';
 
-function App() {
-  return (
-    <div className="App">
-      <Navbar></Navbar>
-      basename setting done
-    </div>
-  );
-}
-
-export default App;
+export default styled.div`
+  text-align: center;
+  padding: 100px 300px;
+  background: #F4F6F7;
+  z-index: 0;
+`
