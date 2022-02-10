@@ -1,23 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import Navbar from './components/Navabar/Navbar';
-import Member from './components/Member';
-import Main from './components/Main'
+import Banner from './components/Banner/Banner';
+import MyPage from './pages/MyPage';
+import Main from './pages/Main'
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import {AuthProvider} from './components/AuthProvider'
+import {AuthProvider} from './modules/AuthProvider'
+import GlobalStyle from './common/GlobalStyle'
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
       <Router basename='/pages'>
-        <Navbar/>
-        <Routes>
-          <Route path='/' element={<Main/>}/>
-          <Route path='/member/me' element={<Member/>}/>
+        <GlobalStyle/>
+        <App>
+          <Banner/>
+          <Routes>
+            <Route path='/' element={<Main/>}/>
+            <Route path='/mypage' element={<MyPage/>}/>
         </Routes>
+        </App>
       </Router>
     </AuthProvider>
   </React.StrictMode>,

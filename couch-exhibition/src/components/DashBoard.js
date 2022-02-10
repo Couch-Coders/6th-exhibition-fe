@@ -83,14 +83,14 @@ const DashBoard = () => {
   );
 
   const onDeleteLike = (record) => {
+    //삭제 요청 보내는 걸로 수정
       setDataSource((pre)=> {
         return pre.filter ((exhibition) => exhibition.id !== record.id);
       });
 
   };
   return (
-    <div className='App'>
-      {/* <header className='App-header'> */}
+    <>
       <header>
       <h4>좋아요 누른 전시회</h4>
       <Dropdown overlay={menu} placement="bottomRight" columns>
@@ -98,6 +98,8 @@ const DashBoard = () => {
       </Dropdown>
       <a key="list-loadmore-more">더보기</a>
       </header>
+
+      data load 하는 부분, 필터 적용하는 부분(요청 링크) 수정
         <Table
         size="small"
         columns={columns}
@@ -109,9 +111,8 @@ const DashBoard = () => {
             hideOnSinglePage: true
           }}
           >
-
         </Table>
-    </div>
+    </>
   );
 };
 
