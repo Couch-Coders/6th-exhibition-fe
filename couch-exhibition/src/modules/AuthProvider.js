@@ -14,7 +14,6 @@ export const AuthProvider = ({children}) =>{
         auth.onAuthStateChanged(async (firebaseMember) => {
             if(firebaseMember){
                 const token = await firebaseMember.getIdToken()
-                console.log(token)
                 defaultHeaders.Authorization = `Bearer ${token}`
                 const res = await fetch("/members/me",{
                     method: "GET",
@@ -23,14 +22,16 @@ export const AuthProvider = ({children}) =>{
                 if(res.status === 200){
                     const member = await res.json()
                     setMember(member)
-                    console.log(member)
-                }else{
+                }
+                else
+                {
                     delete defaultHeaders.Authorizations
                     setMember(null)
                 }
             }
         })
-    }, [])
+    }, [member])
+    
     return(
         <MemberContext.Provider value = {{member, setMember}}>
             {children}

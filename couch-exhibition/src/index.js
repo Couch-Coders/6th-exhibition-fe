@@ -4,9 +4,10 @@ import App from './App';
 import Banner from './components/Banner/Banner';
 import MyPage from './pages/MyPage';
 import Main from './pages/Main'
+import Exhibition from './pages/Exhibition'
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import {AuthProvider} from './modules/AuthProvider'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { AuthProvider } from './modules/AuthProvider'
 import GlobalStyle from './common/GlobalStyle'
 
 ReactDOM.render(
@@ -17,9 +18,10 @@ ReactDOM.render(
         <App>
           <Banner/>
           <Routes>
-            <Route path='/' element={<Main/>}/>
-            <Route path='/mypage' element={<MyPage/>}/>
-        </Routes>
+            <Route path = '/' element = {<Main/>}/>
+            <Route path = '/exhibitions/:id' element = {<Exhibition/>} />
+            <Route path ='/mypage' element = {<MyPage/>}/>
+          </Routes>
         </App>
       </Router>
     </AuthProvider>

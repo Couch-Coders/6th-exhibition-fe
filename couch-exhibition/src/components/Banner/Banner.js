@@ -1,4 +1,4 @@
-import {React, useContext} from 'react';
+import { React, useContext, useEffect, useState } from 'react';
 import {
   Nav,
   NavLink,
@@ -9,7 +9,9 @@ import { MemberContext } from '../../modules/AuthProvider';
 import { signInGoogle, signOut } from '../../modules/fb';
 
 const Banner = () => {
-  const {member} = useContext(MemberContext)
+  const { member } = useContext(MemberContext)
+
+  console.log(member)
   return (
     <>
       <Nav>
