@@ -1,30 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import Banner from './components/Banner/Banner';
-import MyPage from './pages/MyPage';
-import Main from './pages/Main'
-import Exhibition from './pages/Exhibition'
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { AuthProvider } from './modules/AuthProvider'
-import GlobalStyle from './common/GlobalStyle'
+import GlobalStyle from './common/GlobalStyle';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <AuthProvider>
-      <Router basename='/pages'>
-        <GlobalStyle/>
-        <App>
-          <Banner/>
-          <Routes>
-            <Route path = '/' element = {<Main/>}/>
-            <Route path = '/exhibitions/:id' element = {<Exhibition/>} />
-            <Route path ='/mypage' element = {<MyPage/>}/>
-          </Routes>
-        </App>
-      </Router>
-    </AuthProvider>
+      <App />
+      <GlobalStyle/>
   </React.StrictMode>,
   document.getElementById('root')
 );

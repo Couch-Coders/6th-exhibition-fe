@@ -1,29 +1,16 @@
 {   
-    "members": {
-      "pageable":{},
-      "list":{
-        "memeberId": 1,
+    "members": [
+      {
+        "id": 1,
         "memberName": "example@example.com",
         "nickname": "first_test"
-        }
-      },
+      }
+    ],
 
-    "likes": {
-      "pageable":{
-        "sort": { "sorted": true, "unsorted": false, "empty": false },
-        "offset": 0,
-        "pageSize": 100,
-        "pageNumber": 0,
-        "paged": true,
-        "unpaged": false
-      },
-      "list":{
-        "currentPage": 1,
-        "totalPages": 1,
-        "totalElements": 4,
-        "contents": [
+    "likes": 
+      [
           {
-            "likeId" : 1,
+            "id" : 1,
             "exhibition" : {
               "exhibitioId" : 10,
               "title" : "살바도르달리 전시회 ",
@@ -33,7 +20,7 @@
             }
           },
           {
-            "likeId" : 2,
+            "id" : 2,
             "exhibition" : {
               "exhibitioId" : 10,
               "title" : "살바도르달리 전시회 ",
@@ -43,7 +30,7 @@
             }
           },
           {
-            "likeId" : 3,
+            "id" : 3,
             "exhibition" : {
               "exhibitioId" : 10,
               "title" : "살바도르달리 전시회 ",
@@ -53,7 +40,7 @@
             }
           },
           {
-            "likeId" : 4,
+            "id" : 4,
             "exhibition" : {
               "exhibitioId" : 10,
               "title" : "살바도르달리 전시회 ",
@@ -62,49 +49,190 @@
               "endDate" : "2022-03-20 "
             }
           }
-        ]
-      }
-    },
+        ],
       
-    "reviews": {
-      "pageable": {},
-      "list":{
+    "reviews": 
+    [
+      {
         "nickname": "user1",
         "content": "너무 내 취향ㅠㅜ 뫄뫄 작가님 최고됨..",
         "registerDate": "2022-01-22T22:25:33.5398894",
         "lastModifiedDate": "2022-01-11T11:14:34.845039"
       }
-    },
+    ],
   
-    "exhibitions": {
-      "pageable": {
-        "sort": { "sorted": true, "unsorted": false, "empty": false },
-        "offset": 0,
-        "pageSize": 12,
-        "pageNumber": 0,
-        "paged": true,
-        "unpaged": false
-        },
-        "list": {
-          "content": [
+    "exhibitions": 
+         [
             {
-              "exhibitionId": 10,
-              "title": "살바도르달리 전시회",
-              "place" : "DDP", 
-              "city" : "서울시",
+              "id": 10,
+              "title": "CONTACT_온라인 마술 공연",
+              "place" : "라온플레이", 
+              "city" : "서울",
               "district":"서초구",
-              "latitude":37.5, 
-              "longitude": 126.99 ,
-              "startDate" : "2021-12-21",
-              "endDate" : "2022-03-20 ",
-              "contactLink":"https://",
-              "ticketPrice" :"15000원",
-              "reservationLink": "https://",
-              "posterUrl": "https://",
+              "latitude": 37.485929699207965, 
+              "longitude": 127.03248455338787,
+              "startDate" : "20200804",
+              "endDate" : "20221231",
+              "contactLink":"https://raonplay.co.kr/",
+              "ticketPrice" :"50,000원",
+              "reservationLink": "https://raonplay.co.kr/product/contact",
+              "posterUrl": "http://www.culture.go.kr/upload/rdf/21/11/rdf_2021111915314538261.JPG",
               "progress":true,
               "likeCount": 120
+            },
+            {
+              "id": 11,
+              "title": "반고흐빌리지展- 군산",
+              "place" : "본다빈치 뮤지엄 군산", 
+              "city" : "전북",
+              "district":"",
+              "latitude": 35.95406273485403, 
+              "longitude": 126.68978925191544,
+              "startDate" : "20210612",
+              "endDate" : "20220529",
+              "contactLink":"https://raonplay.co.kr/",
+              "ticketPrice" :"50,000원",
+              "reservationLink": "https://raonplay.co.kr/product/contact",
+              "posterUrl": "http://www.culture.go.kr/upload/rdf/21/08/show_202108109265820576.gif",
+              "progress":true,
+              "likeCount": 120
+            },
+            {
+              "id": 166147,
+              "title": "모두 몇 마리일까요?",
+              "place": "파주나비나라박물관",
+              "city": "경기",
+              "district": "",
+              "latitude": 37.7148520478068,
+              "longitude": 126.686912358871,
+              "startDate": "20201017",
+              "endDate": "20220630",
+              "contactLink": "http://nabynara.com/",
+              "ticketPrice": "6,000원",
+              "reservationLink": "https://booking.naver.com/booking/6/bizes/337055/items/3414658?area=ple",
+              "posterUrl": "http://www.culture.go.kr/upload/rdf/21/03/rdf_2021033110325407198.jpg",
+              "progress": true,
+              "likeCount": 104
+            },
+            {
+              "id": 164744,
+              "title": "김포다도박물관 상설전시",
+              "place": "김포다도박물관",
+              "city": "경기",
+              "district": "",
+              "latitude": 37.73752393912436,
+              "longitude": 126.57442750315884,
+              "startDate": "20201231",
+              "endDate": "20241231",
+              "contactLink": "",
+              "ticketPrice": "6,000원",
+              "reservationLink": "",
+              "posterUrl": "http://www.culture.go.kr/upload/rdf/20/12/rdf_202012311432049249.jpg",
+              "progress": true,
+              "likeCount": 92
+            },
+            {
+              "id": 173551,
+              "title": "온라인 매직스쿨",
+              "place": "용용아저씨",
+              "city": "경기",
+              "district": "",
+              "latitude": 37.43723945794846,
+              "longitude": 126.88282408550978,
+              "startDate": "20210104",
+              "endDate": "20221231",
+              "contactLink": "",
+              "ticketPrice": "6,000원",
+              "reservationLink": "",
+              "posterUrl": "http://www.culture.go.kr/upload/rdf/21/11/rdf_2021111915342114116.JPG",
+              "progress": true,
+              "likeCount": 50
+            },
+            {
+              "id": 170893,
+              "title": "국립중앙도서관 「실감서재」",
+              "place": "실감서재",
+              "city": "서울",
+              "district": "",
+              "latitude": 37.49742196534692,
+              "longitude": 127.00322294340722,
+              "startDate": "20210104",
+              "endDate": "20221231",
+              "contactLink": "",
+              "ticketPrice": "6,000원",
+              "reservationLink": "",
+              "posterUrl": "http://www.culture.go.kr/upload/rdf/21/09/rdf_2021092715383338725.jpg",
+              "progress": true,
+              "likeCount": 40
+            },
+            {
+              "id": 202347,
+              "title": "투탕카멘 - 파라오의 비밀",
+              "place": "용산전쟁기념관",
+              "city": "",
+              "district": "",
+              "latitude": 37.53696483450245,
+              "longitude": 126.97711068154208,
+              "startDate": "20210606",
+              "endDate": "20220424",
+              "contactLink": "",
+              "ticketPrice": "6,000원",
+              "reservationLink": "",
+              "posterUrl": "http://www.culture.go.kr/upload/rdf/22/01/show_2022012413175162790.gif",
+              "progress": true,
+              "likeCount": 30
+            },
+            {
+              "id": 202348,
+              "title": "투탕카멘 - 파라오의 비밀",
+              "place": "용산전쟁기념관",
+              "city": "",
+              "district": "",
+              "latitude": 37.53696483450245,
+              "longitude": 126.97711068154208,
+              "startDate": "20210606",
+              "endDate": "20220424",
+              "contactLink": "",
+              "ticketPrice": "6,000원",
+              "reservationLink": "",
+              "posterUrl": "http://www.culture.go.kr/upload/rdf/22/01/show_2022012413175162790.gif",
+              "progress": true,
+              "likeCount": 30
+            },
+            {
+              "id": 174348,
+              "title": "국내 최초 디자인 필름 아카이브 전시『INSTANT DETECTION』",
+              "place": "셀린박갤러리",
+              "city": "",
+              "district": "",
+              "latitude": 37.53696483450245,
+              "longitude": 126.97711068154208,
+              "startDate": "20210901",
+              "endDate": "20220228",
+              "contactLink": "",
+              "ticketPrice": "6,000원",
+              "reservationLink": "",
+              "posterUrl": "http://www.culture.go.kr/upload/rdf/21/12/rdf_2021120911592716992.jpg",
+              "progress": true,
+              "likeCount": 22
+            },
+            {
+              "id": 170931,
+              "title": "Spielraum X Phytology_식물의 방 展",
+              "place": "뮤지엄 산(Museum SAN)",
+              "city": "강원",
+              "district": "",
+              "latitude": 37.41534433374532,
+              "longitude": 127.82371298018678,
+              "startDate": "20210911",
+              "endDate": "20220306",
+              "contactLink": "",
+              "ticketPrice": "6,000원",
+              "reservationLink": "",
+              "posterUrl": "http://www.culture.go.kr/upload/rdf/21/09/rdf_2021092513332083476.jpg",
+              "progress": true,
+              "likeCount": 50
             }
           ]
-        }
-      }
+      
   }

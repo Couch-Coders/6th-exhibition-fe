@@ -1,7 +1,35 @@
 import axios from 'axios';
 
-const axiosInstance = axios.create({ baseURL: 'http://localhost:3001' }); //json server
-// const axiosInstance = axios.create({ baseURL: 'https://exhibition-here.herokuapp.com/' });
-axiosInstance.defaults.headers.common['Authorization'] = 'FIREBASE AUTH TOKEN';
+const axiosInstance = axios.create({
+
+    headers: {
+        Authorization: localStorage.getItem('token')
+    }
+
+    });
+
+axiosInstance.interceptors.request.use(
+    config => {
+        config.headers['Authorization'] = localStorage.getItem('token');
+        return config;
+    },
+    err => {
+        if(err.response.status === '401'){
+            console.log('invalid authorization');
+            console.log(err.response);
+        }
+        return Promise.reject(err);
+    }
+)
+
+axiosInstance.interceptors.response.use(
+    res => {
+        console.log(res.data);
+        return res;
+    },
+    err => {
+        return Promise.reject(err);
+    }
+)
 
 export default axiosInstance;
