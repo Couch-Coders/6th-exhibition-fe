@@ -70,16 +70,25 @@ function Main() {
     return (
         <>  <Carousel autoplay effect='fade'>
             <div>                
-                <img style={contentStyle} src='wallpaper1' alt='ex1'/>
+                <img style={contentStyle} src='wallpaper1.png' alt='ex1'/>
             </div>
             <div >                
-                <img style={contentStyle} src='' alt='ex2'/>
+                <img style={contentStyle} src='wallpaper2.png' alt='ex2'/>
             </div>
             <div >                
-                <img  style={contentStyle} src='' alt='ex3'/>
+                <img  style={contentStyle} src='wallpaper3.png' alt='ex3'/>
             </div>
             <div >                
-                <img style={contentStyle} src='' alt='ex4'/>
+                <img style={contentStyle} src='wallpaper4.png' alt='ex4'/>
+            </div>
+            <div >                
+                <img style={contentStyle} src='wallpaper5.png' alt='ex4'/>
+            </div>
+            <div >                
+                <img style={contentStyle} src='wallpaper6.png' alt='ex4'/>
+            </div>
+            <div >                
+                <img style={contentStyle} src='wallpaper7.png' alt='ex4'/>
             </div>
             </Carousel>
             <div className="ranks-container">
