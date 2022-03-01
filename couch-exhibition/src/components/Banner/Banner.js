@@ -36,6 +36,7 @@ const handleSubmit = async(value)=> {
     const res = await register(value);
     const member = res;
     setMember(member);
+    setOpenModal(false);
     setRegisterFormOpen(false);
   }catch(err){
     console.log(err);
@@ -61,7 +62,7 @@ const handleSubmit = async(value)=> {
           }
         </NavBtn>
         {registerFormOpen? <Modal visible={openModal} title="구글 계정을 이용하여 간편하게 가입 하세요." okText="Register" onCancel={() => setOpenModal(false)} onOk={()=>{
-         registerForm.validateFields().then((value)=> {handleSubmit(value)})}}><img src='btn_google_signin_dark_normal_web.png' alt='sign in with google' onClick={() => signInGoogle()}/>
+         registerForm.validateFields().then((value)=> {handleSubmit(value)})}}><img src='btn_google_signin_dark_normal_web.png' alt='sign in with google' onClick={() => {signInGoogle(); }}/>
         <Form form={registerForm} layout="vertical" name="register">
             <Form.Item name="nickname" label="사용할 닉네임"><Input /></Form.Item>
         </Form>

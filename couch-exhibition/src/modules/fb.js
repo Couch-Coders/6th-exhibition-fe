@@ -11,6 +11,7 @@ const firebaseConfig = {
     measurementId: "G-LNB600VT0N"
   };
 
+
 firebase.initializeApp(firebaseConfig);
 export const auth = firebase.auth()
 export const signInGoogle = () =>{

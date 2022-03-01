@@ -70,16 +70,16 @@ function Main() {
     return (
         <>  <Carousel autoplay effect='fade'>
             <div>                
-                <img style={contentStyle} src='202202_[1]_2880x1880.png' alt='ex1'/>
+                <img style={contentStyle} src='wallpaper1' alt='ex1'/>
             </div>
             <div >                
-                <img style={contentStyle} src='202202_[2]_2880x1880.png' alt='ex2'/>
+                <img style={contentStyle} src='' alt='ex2'/>
             </div>
             <div >                
-                <img  style={contentStyle} src='202201_1920x1080.png' alt='ex3'/>
+                <img  style={contentStyle} src='' alt='ex3'/>
             </div>
             <div >                
-                <img style={contentStyle} src='202201_2880x1880.png' alt='ex4'/>
+                <img style={contentStyle} src='' alt='ex4'/>
             </div>
             </Carousel>
             <div className="ranks-container">

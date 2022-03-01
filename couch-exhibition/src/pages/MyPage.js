@@ -1,18 +1,19 @@
 import { useContext, useState } from "react";
 import { Wrapper, Division } from './pages.style';
 import { useNavigate } from 'react-router-dom';
-import { Button, Modal, Input } from "antd";
+import { Button, Modal, Input, Form } from "antd";
 import "antd/es/modal/style/css";
 import { MemberContext } from "../modules/AuthProvider";
 import DashBoard from "../components/DashBoard"
 import { ReactComponent as EditIcon } from '../common/edit.svg'
-import { deleteMember } from "../APIs/MemberAPI";
+import { deleteMember, editMember } from "../APIs/MemberAPI";
 import { signOut } from '../modules/fb';
 
 function MyPage(){
     const { member } = useContext(MemberContext);
     const [isRopen, setIsRopen] = useState(false);
     const [isEopen, setIsEopen] = useState(false);
+    const [editForm] = Form.useForm();
     const navigate = useNavigate();
     function removeMember() {
         setIsRopen(true);
@@ -34,8 +35,17 @@ function MyPage(){
         }
     }
 
-    const handleEdit = (e) => {
-        e.preventDefault();
+    const handleEdit = async(value) => {
+        console.log(value);
+        try{
+            const res = await editMember(value);
+            console.log(res);
+            if(res.status === 200){
+                setIsEopen(false)
+            }
+        }catch(err){
+            console.log(err);
+        }
     }
 
     const handleCancel = () => {
@@ -62,8 +72,12 @@ function MyPage(){
             <Modal title="회원 탈퇴" visible={isRopen} onOk={handleRemove} onCancel={handleCancel}>
             정말로 탈퇴하시겠습니까? 탈퇴 시 데이터 복구가 불가능합니다.
             </Modal>
-            <Modal title="닉네임 수정" visible={isEopen} onOk={handleEdit} onCancel={handleCancel}>
-            <Input value={member.nickname}/>
+            <Modal title="닉네임 수정" visible={isEopen} onOk={()=> {editForm.validateFields().then((value)=> handleEdit(value))}} onCancel={handleCancel}>
+            <Form form={editForm} name="edit">
+                <Form.Item name="nickname">
+                    <Input defaultValue={member.nickname}/>
+                </Form.Item>
+            </Form>
             </Modal>
         </Wrapper>
     )
