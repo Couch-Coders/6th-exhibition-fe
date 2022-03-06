@@ -50,7 +50,6 @@ export const WriteReview = styled(Input.TextArea)`
     font-weight: 400;
     line-height: 22px;
     font-size: 14px;
-    padding: 5px 12px;
 `
 
 export const SubmitBtn = styled(Button)`

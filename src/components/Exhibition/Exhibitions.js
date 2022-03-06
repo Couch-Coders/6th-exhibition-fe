@@ -2,12 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { getTopTen } from '../../APIs/ExhibitionAPI';
 import { Link } from 'react-router-dom';
 import ExhibitionCard from './ExhibitionCard';
-import { Row, Col } from 'antd';
-import { LeftCircleOutlined, RightCircleOutlined } from '@ant-design/icons';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 function Exhibitions(){
     const [exhibitionList, setExhibitionList] = useState([]);
     const [loading, setLoading] = useState(false);
+    const settings = {
+        className: "center",
+        infinite: true,
+        swipeToSlide: true,
+        dots: false,
+        slidesToShow: 3,
+        slidesToScroll: 3
+    }
     
     useEffect(async ()=> {
         const exhibitions = await getTopTen();
@@ -24,20 +33,15 @@ function Exhibitions(){
     else
     {
         return(
-            <div className='card-wrapper'>
-                {/* 좌우 버튼 클릭에 scroll 이동 기능 추가 */}
-                <LeftCircleOutlined style={{ fontSize: '30px', marginRight: '20px' }}/>
-                <Row style={{display: 'flex', flexDirection: 'row', overflowX: 'scroll', overflowY: 'hidden'}}>
+               <Slider {...settings}>
                 {
                     exhibitionList.map((res, idx) => {
-                        return <Link to = {`/exhibitions/${res.id}`} key = {idx}><Col span = {8}>
+                        return <div><Link to = {`/exhibitions/${res.id}`} key = {idx}>
                             <ExhibitionCard 
-                        exhibition = {res}/> </Col></Link>
+                        exhibition = {res}/> </Link></div>
                     })
                 }
-                </Row>
-                <RightCircleOutlined style={{ fontSize: '30px', marginLeft: '20px' }}/>
-            </div>
+               </Slider>
             )
     }
 

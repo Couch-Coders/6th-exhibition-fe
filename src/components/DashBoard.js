@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import "antd/es/table/style/css";
 import { Table, Button, Space, Select } from 'antd';
 import { RightOutlined } from '@ant-design/icons';
-import { getMyReviews, getLikes } from '../APIs/MemberAPI';
-import { getExhibition } from '../APIs/ExhibitionAPI';
+import { getMyReviews, getTopLikes } from '../APIs/MemberAPI';
+import { deleteReview } from '../APIs/ReviewAPI';
+import { getExhibition, deleteLike } from '../APIs/ExhibitionAPI';
 import { MyPageSubTitle, Container, FlexDiv } from '../pages/pages.style';
 import { useNavigate } from 'react-router-dom';
 
@@ -23,9 +24,9 @@ function DashBoard () {
 
   useEffect(()=>{
     setError(null);
+    setLoading(true);
     setReviewList([]);
     setLikeList([]);
-    setLoading(true);
     getMyReData();
     getLiData();
     setLoading(false);
@@ -33,11 +34,11 @@ function DashBoard () {
   
   async function getLiData() {
     try{
-      const res = await getLikes();
+      const res = await getTopLikes();
       const myLikes = res.data.content;
       const finalRes = myLikes.map((like,idx) => {
         let date = changeDate(like.exhibition.startDate.toString()) + '~' + changeDate(like.exhibition.endDate.toString())
-        return { number: idx+1, key: idx, exhibitionTitle: like.exhibition.title, date: date }
+        return { ...like, number: idx+1, key: idx, exhibitionTitle: like.exhibition.title, date: date }
       })
       setLikeList(finalRes);
     }catch(err){
@@ -51,7 +52,7 @@ function DashBoard () {
       const res = await getMyReviews();
       const myReviews = res.data.content;
       const finalRes = await Promise.all(myReviews.map(async (review, idx) => {
-          const tmp = await getExhibition(review.exhibitionId);
+        const tmp = await getExhibition(review.exhibitionId);
           let date = changeDate(tmp.data.startDate.toString()) + '~' + changeDate(tmp.data.endDate.toString());  
           return { ...review, exhibitionTitle: tmp.data.title, date: date,
           number: idx+1,
@@ -65,51 +66,144 @@ function DashBoard () {
     }
   }
 
-  const columns = [
+  const likeColumns = [
     {
       key:'1',
       title:'번호',
-      dataIndex:'number'
+      dataIndex:'number',
+      onCell: (record, rowIndex)=>{
+        return{
+          onClick: event => {
+            navigate(`/exhibitions/${record.exhibition.id}`)
+          }
+        }
+      }
     },
     {
       key:'2',
       title:'전시회 제목',
-      dataIndex:'exhibitionTitle'
+      dataIndex:'exhibitionTitle',
+      onCell: (record, rowIndex)=>{
+        return{
+          onClick: event => {
+            navigate(`/exhibitions/${record.exhibition.id}`)
+          }
+        }
+      }
     },
     {
       key:'3',
       title:'전시기간',
-      dataIndex:'date'
+      dataIndex:'date',
+      onCell: (record, rowIndex)=>{
+        return{
+          onClick: event => {
+            navigate(`/exhibitions/${record.exhibition.id}`)
+          }
+        }
+      }
     },
     {
       key:'4',
-      title:'etc',
+      title:'',
       render: (record) => {
         return (
           <Space size="middle">
-            <Button type='primary' danger
-              onClick={() => {
-                // onDeleteLike(record);
+            <Button style={{ width: '42px', height: '24px', radius: '2px', background: '#F0F0F0', border: '1px solid #D9D9D9', boxShadow: '0px 2px 0px rgba(0, 0, 0, 0.016)', fontFamily: 'Roboto', fontStyle: 'normal', lineHeight: '22px', color: 'rgba(0, 0, 0, 0.85)', padding: 0 }}
+              onClick={() => { 
+                onDeleteLike(record);
             }}
             >
               삭제
           </Button>
           </Space>
+        );
+      }
+    },
+  ];
 
-
+  const reviewColumns = [
+    {
+      key:'1',
+      title:'번호',
+      dataIndex:'number',
+      onCell: (record, rowIndex)=>{
+        return{
+          onClick: event => {
+            navigate(`/exhibitions/${record.exhibitionId}`)
+          }
+        }
+      }
+    },
+    {
+      key:'2',
+      title:'전시회 제목',
+      dataIndex:'exhibitionTitle',
+      onCell: (record, rowIndex)=>{
+        return{
+          onClick: event => {
+            navigate(`/exhibitions/${record.exhibitionId}`)
+          }
+        }
+      }
+    },
+    {
+      key:'3',
+      title:'전시기간',
+      dataIndex:'date',      
+      onCell: (record, rowIndex)=>{
+        return{
+          onClick: event => {
+            navigate(`/exhibitions/${record.exhibitionId}`)
+          }
+        }
+      }
+    },
+    {
+      key:'4',
+      title:'',
+      render: (record) => {
+        return (
+          <Space size="middle">
+            <Button style={{ width: '42px', height: '24px', radius: '2px', background: '#F0F0F0', border: '1px solid #D9D9D9', boxShadow: '0px 2px 0px rgba(0, 0, 0, 0.016)', fontFamily: 'Roboto', fontStyle: 'normal', lineHeight: '22px', color: 'rgba(0, 0, 0, 0.85)', padding: 0 }}
+              onClick={() => { 
+                onDeleteReview(record);
+            }}
+            >
+              삭제
+          </Button>
+          </Space>
         );
       }
     },
   ];
 
   const { Option } = Select;
-  // const onDeleteLike = (record) => {
-  //   //삭제 요청 보내는 걸로 수정
-  //     setDataSource((pre)=> {
-  //       return pre.filter ((exhibition) => exhibition.id !== record.id);
-  //     });
+  async function onDeleteLike(record) {
+    //삭제 전에 확인 모달
+    console.log(record);
+    try{
+      const res = await deleteLike(record.exhibition.id);
+      console.log(res);
+    }catch(err){
+      console.log(err);
+    }
+    getLiData();
 
-  // };
+  };
+
+  async function onDeleteReview (record){
+    //삭제 전에 확인 모달
+    console.log(record);
+    try{
+      const res = await deleteReview(record.exhibitionId, record.reviewId);
+      console.log(res);
+    }catch(err){
+      console.log(err);
+    }
+    getMyReData();
+
+  };
 
   function likeFilterChanged(value) {
     console.log(value);
@@ -124,7 +218,6 @@ function DashBoard () {
   else{
     return (
       <>
-      {/* 양쪽 다 상위 3개만 가져오기 */}
       <Container>
         <FlexDiv style={{ justifyContent: 'space-between' }}>
         <MyPageSubTitle>내가 좋아요 누른 전시</MyPageSubTitle>
@@ -145,7 +238,7 @@ function DashBoard () {
         
         <Table
           size="small"
-          columns={columns}
+          columns={likeColumns}
           dataSource={likeList}
           bordered
           pagination={{
@@ -153,6 +246,7 @@ function DashBoard () {
               pageSize: 3,
               hideOnSinglePage: true
             }}
+          loading={loading}
             >
           </Table>
       </Container>
@@ -179,7 +273,7 @@ function DashBoard () {
 
         <Table
           size="small"
-          columns={columns}
+          columns={reviewColumns}
           dataSource={reviewList}
           bordered
           pagination={{
@@ -187,14 +281,8 @@ function DashBoard () {
               pageSize: 3,
               hideOnSinglePage: true
             }}
-          onRow = {(record, rowIdx)=>{
-            return{
-              onClick: event => {
-                navigate(`/exhibitions/${record.exhibitionId}`)
-              }
-            }
-          }}
-            >
+          loading={loading}
+          >
         </Table>
       </Container>
       </>

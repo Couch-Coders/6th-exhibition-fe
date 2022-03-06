@@ -28,6 +28,7 @@ export default ({ children }) => {
                 }
             }
             else {
+                setRegisterFormOpen(true);
                 setMember(null);
                 localStorage.clear();
             }

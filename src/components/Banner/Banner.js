@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import {
   Nav,
   NavLink,
@@ -10,39 +10,48 @@ import { signInGoogle, signOut } from '../../modules/fb';
 import { ReactComponent as MemberIcon } from '../../common/member_default.svg';
 import { Link } from 'react-router-dom';
 import { register } from '../../APIs/MemberAPI';
+import { useNavigate } from 'react-router-dom';
 
 function Banner () {
   const { member, registerFormOpen, setRegisterFormOpen, setMember } = useContext(MemberContext);
   const [registerForm] = Form.useForm();
+  const navigate = useNavigate();
   const menu = (
     <Menu>
-      <Menu.Item>
+      <Menu.Item key='mypage'>
         <Link to='/mypage'>
           마이페이지
         </Link>
       </Menu.Item>
-      <Menu.Item>
-        <a onClick={signOut}>Logout</a> 
+      <Menu.Item key='logout'>
+        <a onClick={() => { signOut(); }}>Logout</a> 
       </Menu.Item>
     </Menu>
   );
   const [openModal, setOpenModal] = useState(false);
-  console.log(member);
-  async function signIn () {
+  function signIn () {
     setOpenModal(true);
   }
-const handleSubmit = async(value)=> {
-  try{
-    const res = await register(value);
-    const member = res;
-    setMember(member);
-    setOpenModal(false);
-    setRegisterFormOpen(false);
-  }catch(err){
-    console.log(err);
-    throw new Error('register failed');
+
+  const handleSubmit = async(value)=> {
+    try{
+      const res = await register(value);
+      const member = res;
+      setMember(member);
+      setOpenModal(false);
+      setRegisterFormOpen(false);
+    }catch(err){
+      console.log(err);
+      throw new Error('register failed');
+    }
   }
-}
+
+  useEffect(() => {
+    if(member){
+      setOpenModal(false);
+      setRegisterFormOpen(false);
+    }
+  },[member])
 
   return (
     <>
@@ -62,7 +71,7 @@ const handleSubmit = async(value)=> {
           }
         </NavBtn>
         {registerFormOpen? <Modal visible={openModal} title="구글 계정을 이용하여 간편하게 가입 하세요." okText="Register" onCancel={() => setOpenModal(false)} onOk={()=>{
-         registerForm.validateFields().then((value)=> {handleSubmit(value)})}}><img src='btn_google_signin_dark_normal_web.png' alt='sign in with google' onClick={() => {signInGoogle(); }}/>
+         registerForm.validateFields().then((value)=> {handleSubmit(value)})}}><img src='btn_google_signin_dark_normal_web.png' alt='sign in with google' onClick={() => { signInGoogle() }}/>
         <Form form={registerForm} layout="vertical" name="register">
             <Form.Item name="nickname" label="사용할 닉네임"><Input /></Form.Item>
         </Form>
