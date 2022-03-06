@@ -22,14 +22,12 @@ export default createGlobalStyle`
         background: #854ECA;
     }
 
-    .card-wrapper {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+    .slick-prev::before{
+        color: black;
     }
-
-    .search-container{
-        
+    
+    .slick-next::before{
+        color: black;
     }
 `;
 

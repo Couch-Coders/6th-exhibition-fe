@@ -68,7 +68,8 @@ function Main() {
         margin: '0 5px'
     };
     return (
-        <>  <Carousel autoplay effect='fade'>
+        <>  
+        <Carousel autoplay dots={false} effect='fade'>
             <div>                
                 <img style={contentStyle} src='wallpaper1.png' alt='ex1'/>
             </div>

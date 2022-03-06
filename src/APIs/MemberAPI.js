@@ -61,3 +61,12 @@ export async function getLikes(){
         console.log(err);
     }
 }
+
+export async function getTopLikes(){
+    try{
+        const res = await axiosInstance.get('/members/me/likes3');
+        return res;
+    }catch(err){
+        console.log(err);
+    }
+}

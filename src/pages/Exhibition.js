@@ -18,11 +18,19 @@ function changeDate(date){
 }
 
 function formatDate(date){
-    let year = date.substr(0,4);
-    let month = date.substr(5,2);
-    let day = date.substr(8,2);
+    console.log(date);
+    let year = date[0];
+    let month = date[1];
+    let day = date[2];
+    if(month<10 && day<10){
+        return year+'.0'+month+'.0'+day;
+    }else if(month>=10 && day<10){
+        return year+'.'+month+'.0'+day;
+    }else if(month<10 && day>=10){
+        return year+'.0'+month+'.'+day;
+    }else
     return year+'.'+month+'.'+day;
-}
+    }
 
 function Exhibition() {
     const { id } = useParams();
@@ -101,28 +109,38 @@ function Exhibition() {
         } = exhibition;
 
         async function postReview(value){
-            if(value.content.length > 0)
-            try{
-                const res = await createReview(id, value);
-                console.log(res);
-                if(res.status === 200){
-                    getReData();
-                    review.resetFields();
-                }
-            }catch(err){
-                console.log(err);
+            console.log(value);
+            if(!member){
+                alert('로그인 한 유저만 후기를 작성할 수 있습니다.');
+                return false;
+                // 로그인 창을 모듈화 안 했더니 다시 보여주는 부분을 넣기가 애매하네.
+            }
+            else if(value.content === undefined || value.content.length < 30){
+                alert('후기는 30자 이상 입력해 주세요.');
+                return false;
             }
             else{
-                // 30자 이상 입력하게 validation check 시키자... 지금은 공백 넣은 거 아니면 걍 작성되게 함.
-            }            
-        }
+                if(value.content.length >= 30 && member){
+                try{
+                    const res = await createReview(id, value);
+                    console.log(res);
+                    if(res.status === 200){
+                        getReData();
+                        review.resetFields();
+                    }
+                }catch(err){
+                    console.log(err);
+                }
+            }
+        } 
+    }
 
         function editReview(reviewId){
             setEditId(reviewId);
         }
 
         async function patchReview(value){
-            // 삭제 전에 확인 받기
+            // 삭제 전에 확인 받는 모달 띄우기
             try{
                 const res = await updateReview(id,value,editId);
                 console.log(res);
@@ -136,7 +154,6 @@ function Exhibition() {
         }
 
         async function removeReview(reviewId){
-            console.log(reviewId);
             try{
                 const res = await deleteReview(id, reviewId);
                 console.log(res);
@@ -148,8 +165,7 @@ function Exhibition() {
             }
         }
 
-        async function removeLike(value){
-            console.log(value);
+        async function removeLike(){
             if(member){
                 try{
                     const res = await deleteLike(id);
@@ -166,8 +182,7 @@ function Exhibition() {
             }
         }
     
-        async function addLike(value){
-            console.log(value);
+        async function addLike(){
             if(member){
                 try{
                     const res = await postLike(id);
@@ -180,6 +195,7 @@ function Exhibition() {
                     console.log(err);
                 }
             }else{
+                alert('로그인 한 유저만 좋아요를 할 수 있습니다.');
                 return false;
             }
         }
@@ -209,11 +225,10 @@ function Exhibition() {
             <FlexDiv>
                 <DetailTitle>위치</DetailTitle><DetailContent> <Map lat = {latitude} lng = {longitude} /></DetailContent>
             </FlexDiv>
-               {/* 지도 좌표가 반올림 값이라 너무 대충 나옴... 만약 시간이 된다면 주소를 통해 재검색 후 lat, lng 값을 받아 다시 표시하는 게 좋을 듯. */}
             <Division />
             <Form name='review-form' form={review} onFinish={postReview} layout='inline'>
             <FlexDiv style={{ alignItems: 'center' }}>
-            <Form.Item name={'content'} style = {{ width: '100%' }}><WriteReview placeholder='후기를 입력하세요'/>
+            <Form.Item name={'content'} style = {{ width: '100%' }}><WriteReview showCount placeholder='후기를 입력하세요'/>
             </Form.Item>
             <Form.Item>
             <SubmitBtn type='primary' htmlType='submit'>등록</SubmitBtn>
@@ -228,7 +243,7 @@ function Exhibition() {
                     <div className='review-wrapper' key={review.reviewId} style={{ marginBottom: '40px' }}>
                         <FlexDiv style={{ justifyContent: 'space-between',  fontFamily: 'Roboto', fontStyle: 'normal', fontWeight: '400', fontSize: '12px', lineHeight: '22px', color: 'rgba(0, 0, 0, 0.45)' }}>    
                         <div className='writer'>{review.nickname}</div>
-                        <div className='date'>{formatDate(review.modifiedDateTime.toString())}</div>
+                        <div className='date'>{formatDate(review.modifiedDateTime)}</div>
                         </FlexDiv>
 
                             {
