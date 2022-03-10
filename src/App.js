@@ -21,7 +21,7 @@ function App() {
             {/* 회원 정보를 어디서 요청? <- 일단 로그인 되지 않은 사람은 접근 할 수 없도록 조정 필요 */}
           </Routes>
       </Router>
-      </AuthProvider>
+    </AuthProvider>
   )
 }
 
