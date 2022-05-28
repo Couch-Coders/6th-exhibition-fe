@@ -45,6 +45,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://exhibition-here.herokuapp.com/pages",
+  "proxy": "https://exhibition-here.herokuapp.com",
   "homepage": "."
 }
