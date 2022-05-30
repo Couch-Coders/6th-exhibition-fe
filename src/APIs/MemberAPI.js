@@ -1,4 +1,4 @@
-import axiosInstance from "."
+import axiosInstance from './index'
 
 export async function login() {
     try{
