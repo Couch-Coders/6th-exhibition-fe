@@ -115,12 +115,12 @@ function Exhibition() {
                 return false;
                 // 로그인 창을 모듈화 안 했더니 다시 보여주는 부분을 넣기가 애매하네.
             }
-            else if(value.content === undefined || value.content.length < 30){
-                alert('후기는 30자 이상 입력해 주세요.');
+            else if(value.content === undefined || value.content.length < 10){
+                alert('후기는 10자 이상 입력해 주세요.');
                 return false;
             }
             else{
-                if(value.content.length >= 30 && member){
+                if(value.content.length >= 10 && member){
                 try{
                     const res = await createReview(id, value);
                     console.log(res);

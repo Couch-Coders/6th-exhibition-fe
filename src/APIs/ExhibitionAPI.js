@@ -12,7 +12,7 @@ export async function fetchExhibitions() {
 
 export async function searchExhibitions(city, area, progress, keyword, sort){
     try{
-        const res = await axiosInstance.get(`/exhibitions/search?city=${city}&size=10&area=${area}&progress=${progress}&keyword=${keyword}&sort=${sort}`);
+        const res = await axiosInstance.get(`/exhibitions/search?city=${city}&size=50&area=${area}&progress=${progress}&keyword=${keyword}&sort=${sort}`);
         return res;
     }catch(err){
         console.log(err.response);
