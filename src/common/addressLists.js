@@ -1,4 +1,5 @@
 export let city = [
+    '전체',
     '서울',
     '부산',
     '대구',
@@ -19,6 +20,9 @@ export let city = [
   ];
   
   export let area = {
+    전체:[
+        --
+    ],
     서울: [
       '강남구',
       '강동구',
