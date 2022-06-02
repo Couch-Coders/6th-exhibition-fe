@@ -21,7 +21,7 @@ export let city = [
   
   export let area = {
     전체:[
-        --
+        '--'
     ],
     서울: [
       '강남구',
