@@ -14,8 +14,8 @@ function Main() {
     const [cities, setCities] = useState(area[city[0]]);
     const [areas, setAreas] = useState(area[city[0]][0])
     const [params, setParams] = useState({
-        city: '서울',
-        area: '강남구',
+        city: '전체',
+        area: '--',
         progress: true,
         keyword: '',
         sort: 'startDate,desc'
