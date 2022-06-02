@@ -97,19 +97,20 @@ function Main() {
                 </Select>
 
                 <Search       
-                placeholder="검색어를 입력하세요"
-                allowClear
-                enterButton="Search"
-                size="large"
-                onSearch={onSearch}
-                style={{ width: '365px', height: '32px', float: 'right'}}
+                    placeholder="검색어를 입력하세요"
+                    allowClear
+                    enterButton="Search"
+                    size="large"
+                    onSearch={onSearch}
+                    style={{ width: '365px', height: '32px', float: 'right'}}
                 />
                 
                 </div>
+                <div>
                 {
                     loading? <div> loading... </div>:<ResultList results = {searchRes} />
                 }
-                
+                </div>
             </div>
         </>
     )
