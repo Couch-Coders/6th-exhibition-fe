@@ -57,7 +57,7 @@ function Banner () {
     <>
       <Nav>
         <NavLink to='/'>
-        <p><img src="./logo1.png" style="width: 100px;"/></p>
+        <p><img src="logo1.png" style="width: 100px;"/></p>
         </NavLink>
         <NavBtn>
           {
