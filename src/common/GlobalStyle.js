@@ -23,7 +23,7 @@ export default createGlobalStyle`
     }
     
     .ant-btn-primary:hover {
-        border-color: RGB(65, 195, 190);
+        border-color: #edef6e;
         background: RGB(65, 195, 190);
         color: #edef6e;
     }
