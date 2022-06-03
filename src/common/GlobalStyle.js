@@ -23,11 +23,11 @@ export default createGlobalStyle`
     }
 
     .slick-prev::before{
-        color: black;
+        color: RGB(65, 195, 190);
     }
     
     .slick-next::before{
-        color: black;
+        color: RGB(65, 195, 190);
     }
 `;
 
