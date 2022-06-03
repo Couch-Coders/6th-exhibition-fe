@@ -18,8 +18,8 @@ export default createGlobalStyle`
 
     }
     .ant-btn-primary {
-        border-color: #854ECA;
-        background: #854ECA;
+        border-color: RGB(65, 195, 190);
+        background: RGB(65, 195, 190);
     }
 
     .slick-prev::before{
