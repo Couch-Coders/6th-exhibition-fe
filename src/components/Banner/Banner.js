@@ -57,7 +57,7 @@ function Banner () {
     <>
       <Nav>
         <NavLink to='/'>
-          <p style={{fontSize: "25px", marginRight: "15px"}}>🎨</p>예술한줌
+          <img src="logo1.png" width="50">
         </NavLink>
         <NavBtn>
           {
