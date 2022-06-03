@@ -23,8 +23,9 @@ export default createGlobalStyle`
     }
     
     .ant-btn-primary:hover {
-        border-color: #f3f26c;
-        background: #f3f26c;
+        border-color: RGB(65, 195, 190);
+        background: RGB(65, 195, 190);
+        color: #edef6e;
     }
 
     .slick-prev::before{
