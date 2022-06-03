@@ -21,6 +21,11 @@ export default createGlobalStyle`
         border-color: RGB(65, 195, 190);
         background: RGB(65, 195, 190);
     }
+    
+    .ant-btn-primary:hover {
+        border-color: #f3f26c;
+        background: #f3f26c;
+    }
 
     .slick-prev::before{
         color: RGB(65, 195, 190);
